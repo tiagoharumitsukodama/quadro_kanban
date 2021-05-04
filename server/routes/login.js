@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
     db.authentication_db(login, senha)
         .then( dataJson => {
 
-            const userName = dataJson.userName
+            const userName = dataJson.user
 
             if ( !Object.keys(userName).length )
                 throw Error('User name is empty')
@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
             const token = jwt_tools.generateAccessToken( userName )
 
             res.status(200)
-            res.json({accessToken: token})
+            res.json(token)
         })
         .catch( erro => {
             res.status(401)
