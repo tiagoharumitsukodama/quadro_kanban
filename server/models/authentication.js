@@ -15,3 +15,9 @@ module.exports.addCard_db = async ( card ) => {
     console.log(CARDS)
     return 'ok'
 }
+
+module.exports.updateCard_db = async ( cardId ) => {
+
+    console.log('updated: ',cardId)
+    return 'ok'
+}
