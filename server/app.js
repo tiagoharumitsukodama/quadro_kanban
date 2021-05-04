@@ -16,6 +16,19 @@ const app = express()
 const PORT = process.env.PORT
 const authenticateToken = jwt_tools.authenticateToken
 
+const initalizeDB = async () => {
+    const database = require('./models/db');
+ 
+    try {
+        const resultado = await database.sync();
+        console.log(resultado);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+initalizeDB()
+
 app.use( express.json() );
 app.use( cors() )
 
