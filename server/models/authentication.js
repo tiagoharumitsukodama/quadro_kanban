@@ -21,3 +21,14 @@ module.exports.updateCard_db = async ( cardId ) => {
     console.log('updated: ',cardId)
     return 'ok'
 }
+
+module.exports.deleteCard_db = async ( cardId ) => {
+
+    console.log('deleted: ',cardId)
+    return 'ok'
+}
+
+module.exports.getListCard_db = async () => {
+
+    return CARDS
+}
