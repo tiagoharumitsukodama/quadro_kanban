@@ -1,22 +1,22 @@
 const express = require('express')
 const router = express.Router()
 
-const db = require('../models/authentication') 
+const db = require('../models/callback_auth') 
 const jwt_tools = require('./jwt_tools') 
 
 router.post('/', (req, res) => {
 
     const { login, senha } = req.body
 
-    db.authentication_db(login, senha)
+    db.authenticate_user(login, senha)
         .then( dataJson => {
 
-            const userName = dataJson.user
+            const {username} = dataJson.user
 
-            if ( !Object.keys(userName).length )
+            if ( !username )
                 throw Error('User name is empty')
 
-            const token = jwt_tools.generateAccessToken( userName )
+            const token = jwt_tools.generateAccessToken( username )
 
             res.status(200)
             res.json(token)
@@ -26,7 +26,5 @@ router.post('/', (req, res) => {
             res.json(erro.message)
         })
 })
-
-
 
 module.exports = router

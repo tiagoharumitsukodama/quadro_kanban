@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
-const db = require('../models/authentication')
+const db = require('../models/callback_cards')
 
 router.post('/', (req, res) => {
 
-    db.addCard_db(req.user.user)
+    db.insertCardsDB(req.user.user)
         .then( status =>  {
             if( status == 'ok' ) res.status(200).end()
             else res.status(401).end()
@@ -20,9 +20,9 @@ router.post('/', (req, res) => {
 router.put('/:cardId', (req, res) => {
 
     const cardId = req.params.cardId
-    const { atributo1, atributo2 } = req.body
+    const { card } = req.body
 
-    db.updateCard_db(cardId)
+    db.updatedDB(cardId, card)
         .then( status =>  {
             if( status == 'ok' ) res.status(200).end()
             else res.status(401).end()
@@ -63,5 +63,6 @@ router.get('/', (req, res) => {
             res.end()
         })
 })
+
 
 module.exports = router
