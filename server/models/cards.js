@@ -18,4 +18,4 @@ const Cards = database.define('cards', {
     descricao: Sequelize.STRING
 })
  
-module.exports = Produto;
+module.exports = Cards;
