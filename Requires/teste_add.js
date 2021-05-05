@@ -9,8 +9,7 @@ const DEFAULT_HEADERS = {
 	'Content-Type': 'application/json'
 };
 
-const card = {atributo1: "um", atributo2: "dois"}
-
+const card = {titulo: "muitas tarefas", conteudo: "terminar esse", lista: "ToDo"}
 
 
 try{
@@ -30,7 +29,10 @@ try{
 				    body: JSON.stringify(CREDENTIAL),
 				    headers: DEFAULT_HEADERS,
 				})
-				    .then( data => data.json() )
+				    .then( data => {
+						if(data.status == 200) return data.json()
+						else throw Error('Falha ao conectar')
+					})
 				    .then(token => `Bearer ${token}`)
 					.then(token => ({ Authorization: token }))
 					.then(authToken => authHeader=authToken)
@@ -45,7 +47,11 @@ try{
 			method: 'POST',
 			body: JSON.stringify(card)
 		})
-			.then(res => console.log(res.status))
+			.then(res => {
+				if( res.status == 200 ) return res.json()
+				else throw Error('falha ao add')
+			})
+			.then( card => console.log(card) )
 			.catch(console.error);
 	
 	

@@ -9,10 +9,6 @@ const DEFAULT_HEADERS = {
 	'Content-Type': 'application/json'
 };
 
-const card = {atributo1: "um", atributo2: "dois", id: 55}
-
-
-
 try{
 
 	(async function addCard(){
@@ -30,27 +26,27 @@ try{
 				    body: JSON.stringify(CREDENTIAL),
 				    headers: DEFAULT_HEADERS,
 				})
-				    .then( data => data.json() )
+				    .then( data => { 
+						if(data.status == 200) return data.json()
+						else throw Error('falha ao conectar')
+					})
 				    .then(token => `Bearer ${token}`)
 					.then(token => ({ Authorization: token }))
 					.then(authToken => authHeader=authToken)
 				    .catch(console.error);
 			};
 			
-			
-			
 
 		await authenticate()
 		
 
       fetch(CARD_URL, { headers: authHeader })
-            .then(res => res.json())
+            .then(res => {
+				if(res.status == 200 ) return res.json()
+				else throw Error('lista invalida')
+			})
             .then(list => console.log(list))
             .catch(console.error);
-	
-	
-	
-	
 	
 	})()
 	
