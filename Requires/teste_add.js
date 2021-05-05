@@ -47,8 +47,9 @@ try{
 			method: 'POST',
 			body: JSON.stringify(card)
 		})
-			.then(res => {
-				if( res.status == 200 ) return res.json()
+			.then(res => { console.log(res.status)
+				if( res.status == 201 ) return res.json()
+				if( res.status == 200 ) return {message: 'opa ops'}
 				else throw Error('falha ao add')
 			})
 			.then( card => console.log(card) )

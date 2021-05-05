@@ -64,7 +64,7 @@ const Board = () => {
                     <NewCard addCard={addCardHandler('ToDo')} />
                 }
             </Lista>
-            <Lista titulo={"To Do"}>
+            <Lista titulo={"ToDo"}>
                 {
                     cards.filter(c => c.lista === 'ToDo').map(c =>
                         <Card

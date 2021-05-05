@@ -9,15 +9,13 @@ router.post('/', (req, res) => {
 
     db.insertCardsDB(cardToInsert)
         .then( cartInserted =>  {
+            res.status(201)
+            res.json(cartInserted)
 
-            res.json(cartInserted.dataValues)
-            res.status(200)
-            res.end()
         })
         .catch( error => {
             res.status(401)
             res.json({message: error.message})
-            res.end()
         })
 })
 
