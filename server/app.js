@@ -17,4 +17,4 @@ app.use('/login', routes_login)
 app.use('/cards', jwt_tools.authenticateToken, routes_cards)
 
 
-app.listen(PORT, () => console.log('ouvindo'))
+app.listen(PORT, () => console.log(`Ouvindo na porta ${ PORT }`))
