@@ -1,4 +1,5 @@
 const database = require('./config');
+const Card = require('./model_card');
 const CardModel = require('./model_card');
 
 try {
@@ -14,12 +15,13 @@ module.exports.insertCardsDB = async ({ titulo, conteudo, lista}) => {
 
     await database.sync();
 
-    return await CardModel.create({
+    const cardNew = await CardModel.create({
         titulo: titulo,
         conteudo: conteudo,
         lista: lista
     })
-
+    
+    return cardNew.dataValues
 }
 
 module.exports.readDB = async () => {
