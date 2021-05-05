@@ -1,12 +1,19 @@
 const Sequelize = require('sequelize');
 const database = require('./config');
+const UUID = require('uuid-int');
+
  
 const Card = database.define('card', {
     id: {
-        type: Sequelize.DataTypes.UUIDV4,
-        defaultValue: Sequelize.UUIDV4,
-        allowNull: false,
-        primaryKey: true
+        type: Sequelize.INTEGER ,
+        defaultValue: function() {
+
+            const generator = UUID( 511*Math.random() );
+            const uuid = generator.uuid();
+            return uuid
+        },
+        primaryKey: true,
+        allowNull: false,          
     },
     titulo: {
         type: Sequelize.STRING,
