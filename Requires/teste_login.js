@@ -17,10 +17,13 @@ fetch(AUTH_URL, {
         body: JSON.stringify(CREDENTIAL),
         headers: DEFAULT_HEADERS,
 })
-    .then(data => data.json())
-    .then(json => console.log(json))
-    /*.then(token => `Bearer ${token}`)
-    .then(token => ({ Authorization: token }))
+    .then(data => {
+
+        if(data.status == 200) return data.json()
+        else throw Error(`Code: ${data.status}`)
+    })
+    .then(json => json)
+    .then(token => `Bearer ${token}`)
+    .then(token => console.log({ Authorization: token }))
     .catch(console.error);
-*/
 

@@ -10,61 +10,51 @@ try {
   console.log(error.message)
 }
 
-module.exports.insertCardsDB = async ( card ) => {
+module.exports.insertCardsDB = async ({ titulo, conteudo, lista}) => {
 
-  try {
-      await database.sync();
+    await database.sync();
 
-      return await CardModel.create({
-          titulo: card.titulo,
-          conteudo: card.conteudo,
-          lista: card.lista
-      })
+    return await CardModel.create({
+        titulo: titulo,
+        conteudo: conteudo,
+        lista: lista
+    })
 
-    } catch (error) {
-        console.log(error);
-    }
 }
 
 module.exports.readDB = async () => {
 
-    try {
-        return await CardModel.findAll();
-        
-    } catch (error) {
-        console.log(error)
-    }
+    return await CardModel.findAll();
 }
 
-module.exports.updatedDB = async ( updatedCard ) => {
+module.exports.updatedDB = async ( cardId, updatedCard ) => {
 
-    try {
-        const oldCard = await CardModel.findByPk( updatedCard.id );
-    
-        // ToDo
-        //verificar se caso nao encontre oldCard é null ou undefined
-        if( !oldCard ) throw Error("id does not exist")
-    
-        oldCard.titulo = updatedCard.titulo
-        oldCard.conteudo = updatedCard.conteudo
-        oldCard.lista = updatedCard.lista 
-         
-        return await cards.save();
-        
-    } catch (error) {
-        console.log(error)
-    }
+    const oldCard = await CardModel.findByPk( cardId )
 
+    if( !oldCard ) return null
+    
+    oldCard.titulo = updatedCard.titulo
+    oldCard.conteudo = updatedCard.conteudo
+    oldCard.lista = updatedCard.lista 
+
+    const savedCard = await oldCard.save();
+
+    return savedCard.dataValues
 }
 
 module.exports.deleteDB = async (cardId) => {
-    try {
-        CardModel.destroy({ where: { id: cardId }});
-        //ToDo capiturar erro caso não haja id correspondente
-        
-    } catch (error) {
-        console.log(error)
-    }
+
+    const findedCard = await CardModel.findByPk(cardId);
+    
+    if(!findedCard)
+        return null
+
+    const deletedCard = await findedCard.destroy();
+
+    if( !Object.keys(deletedCard).length ) 
+        throw Error('Erro ao deletar card')
+    
+    return await CardModel.findAll()
 }
 
 

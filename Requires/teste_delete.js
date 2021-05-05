@@ -9,7 +9,7 @@ const DEFAULT_HEADERS = {
 	'Content-Type': 'application/json'
 };
 
-const card = {id: 'PPP96b633d6-779e-4aee-b925-531b19ea7df8', titulo: "POUCAS tarefas", conteudo: "terminar esse", lista: "ToDo"}
+const card = {id: '8979d9d4-4b8c-43ad-9439-63582d3e2f76', titulo: "POUCAS tarefas", conteudo: "terminar esse", lista: "ToDo"}
 
 try{
 
@@ -45,7 +45,7 @@ try{
 
 		fetch(`${CARD_URL}/${card.id}`, {
             headers: { ...authHeader, ...DEFAULT_HEADERS },
-            method: 'PUT',
+            method: 'DELETE',
             body: JSON.stringify(card)
         })
             .then(res => {

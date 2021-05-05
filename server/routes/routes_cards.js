@@ -1,14 +1,18 @@
 const express = require('express')
 const router = express.Router()
 
-const db = require('../models/callback_cards')
+const db = require('../models/db')
 
 router.post('/', (req, res) => {
 
-    db.insertCardsDB(req.user.user)
-        .then( status =>  {
-            if( status == 'ok' ) res.status(200).end()
-            else res.status(401).end()
+    const cardToInsert = req.body
+
+    db.insertCardsDB(cardToInsert)
+        .then( cartInserted =>  {
+
+            res.json(cartInserted.dataValues)
+            res.status(200)
+            res.end()
         })
         .catch( error => {
             res.status(401)
@@ -20,16 +24,15 @@ router.post('/', (req, res) => {
 router.put('/:cardId', (req, res) => {
 
     const cardId = req.params.cardId
-    const { card } = req.body
+    const card = req.body
 
     db.updatedDB(cardId, card)
-        .then( status =>  {
-            if( status == 'ok' ) res.status(200).end()
-            else res.status(401).end()
+        .then( cardChanged =>  {
+            if( !cardChanged ) res.status(401).end()
+            else res.status(200).json(cardChanged).end()
         })
         .catch( error => {
-            res.status(401)
-            res.json({message: error.message})
+            res.status(400)
             res.end()
         })
 })
@@ -38,10 +41,11 @@ router.delete('/:cardId', (req, res) => {
 
     const cardId = req.params.cardId
 
-    db.updateCard_db(cardId)
-        .then( status =>  {
-            if( status == 'ok' ) res.status(200).end()
-            else res.status(401).end()
+    db.deleteDB(cardId)
+        .then( lista =>  {
+
+            if(lista) res.json(lista).status(200).end()
+            else res.status(404).end()
         })
         .catch( error => {
             res.status(401)
@@ -52,7 +56,7 @@ router.delete('/:cardId', (req, res) => {
 
 router.get('/', (req, res) => {
 
-    db.getListCard_db()
+    db.readDB()
         .then( list =>  {
             if( !list ) res.status(401).end()
             else res.json(list).status(200).end()

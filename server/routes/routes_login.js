@@ -9,21 +9,22 @@ router.post('/', (req, res) => {
     const { login, senha } = req.body
 
     db.authenticate_user(login, senha)
-        .then( dataJson => {
+        .then( username => {
 
-            const {username} = dataJson.user
-
-            if ( !username )
-                throw Error('User name is empty')
-
-            const token = jwt_tools.generateAccessToken( username )
-
-            res.status(200)
-            res.json(token)
+            if ( !username ){
+                res.status(401)
+                res.end()
+            }
+            else {
+                const token = jwt_tools.generateAccessToken( username )
+                res.status(200)
+                res.json(token)
+                res.end()
+            }
         })
         .catch( erro => {
-            res.status(401)
-            res.json(erro.message)
+            res.status(400)
+            res.end()
         })
 })
 
