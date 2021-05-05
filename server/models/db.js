@@ -21,7 +21,7 @@ module.exports.insertCardsDB = async ({ titulo, conteudo, lista}) => {
         lista: lista
     })
     
-    return cardNew.dataValues
+    return cardNew
 }
 
 module.exports.readDB = async () => {
@@ -41,7 +41,7 @@ module.exports.updatedDB = async ( cardId, updatedCard ) => {
 
     const savedCard = await oldCard.save();
 
-    return savedCard.dataValues
+    return savedCard
 }
 
 module.exports.deleteDB = async (cardId) => {
@@ -55,8 +55,10 @@ module.exports.deleteDB = async (cardId) => {
 
     if( !Object.keys(deletedCard).length ) 
         throw Error('Erro ao deletar card')
+
+    const nonDeletedCards = await CardModel.findAll()
     
-    return await CardModel.findAll()
+    return {nonDeletedCards, deletedCard}
 }
 
 
