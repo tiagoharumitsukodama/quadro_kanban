@@ -1,5 +1,3 @@
-const db = require('./config')
-
 
 module.exports.authenticate_user = async ( name, password ) => {
     

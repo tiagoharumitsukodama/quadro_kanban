@@ -4,10 +4,12 @@ const db = require('../../models/db')
 module.exports.create = (req, res, next) => {
 
     const cardToInsert = req.body
-
     const {lista, titulo, conteudo} = cardToInsert
 
-    if( !lista || !titulo || !conteudo ) res.status(400).end()
+    if( !lista || !titulo || !conteudo ) {
+        res.status(400).end()
+        return
+    }
 
     db.insertCardsDB(cardToInsert)
         .then( cardInserted =>  {
@@ -25,15 +27,16 @@ module.exports.update = (req, res, next) => {
 
     const cardId = req.params.cardId
     const card = req.body
-
     const {titulo, conteudo, lista} = card
 
-    if( !cardId ) res.status(400).end()
-    if( !titulo || !conteudo || !lista ) res.status(400).end()
-
+    if( !cardId || !titulo || !conteudo || !lista ) {
+        res.status(400).end()
+        return
+    }
 
     db.updatedDB(cardId, card)
         .then( cardChanged =>  {
+
             if( !cardChanged ) {
                 res.status(401).end
             }
@@ -52,7 +55,10 @@ module.exports.delete = (req, res, next) => {
 
     const cardId = req.params.cardId
 
-    if( !cardId ) res.status(400).end()
+    if( !cardId ) {
+        res.status(400).end()
+        return
+    } 
 
     db.deleteDB(cardId)
         .then( ({nonDeletedCards, deletedCard}) =>  {

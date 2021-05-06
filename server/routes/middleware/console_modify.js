@@ -24,7 +24,6 @@ module.exports.printCreateTime = (card,req ,res, next) => {
     const timeToPrint = timeFormat(card.updatedAt)
 
     console.log(`${timeToPrint} - Card ${card.id} - ${card.titulo} - Criar`)
-
     res.end()
 }
 
@@ -33,7 +32,6 @@ module.exports.printDeleteTime = (card,req ,res, next) => {
     const timeToPrint = timeFormat(card.updatedAt)
 
     console.log(`${timeToPrint} - Card ${card.id} - ${card.titulo} - Remover`)
-
     res.end()
 }
 
@@ -42,6 +40,5 @@ module.exports.printUpdateTime = (card,req ,res, next) => {
     const timeToPrint = timeFormat(card.updatedAt)
 
     console.log(`${timeToPrint} - Card ${card.id} - ${card.titulo} - Alterar`)
-
     res.end()
 }

@@ -1,5 +1,4 @@
 const database = require('./config');
-const Card = require('./model_card');
 const CardModel = require('./model_card');
 
 try {
