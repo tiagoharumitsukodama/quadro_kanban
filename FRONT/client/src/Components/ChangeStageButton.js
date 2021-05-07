@@ -32,7 +32,7 @@ export function BackButton({lista}){
 
 export function CloseButton({card}){
 
-    const [cookies] = useCookies(['authToken']);
+    const [cookies, removeCookie] = useCookies(['authToken']);
     const { setListCards } = useLists()
     const {setUser} = useAuth()
 
@@ -45,6 +45,7 @@ export function CloseButton({card}){
         } catch (error) {
             alert(error.message)
             setUser(null)
+            removeCookie('authToken')
         }
     }
 

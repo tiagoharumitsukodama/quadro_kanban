@@ -4,7 +4,6 @@ import { useCookies } from 'react-cookie'
 import { getAllCards } from '../Services/cards'
 import { useEffect, useState } from 'react';
 import { useLists } from '../Hook/useLists'
-import { useHistory } from 'react-router';
 import { useAuth } from '../Hook/useAuth';
 
 
@@ -22,7 +21,6 @@ export default function Board(){
             .catch( error => {
                 alert(error.message)
                 setUser(null)
-                history.push('/')
             })
     },[])
 	
