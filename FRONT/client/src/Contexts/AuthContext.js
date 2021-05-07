@@ -8,7 +8,7 @@ export const AuthContext = React.createContext()
 export default function AuthProvider({children}){
 
     const [user, setUser] = useState()
-    const [cookies, setCookie, removeCookie] = useCookies(['authToken']);
+    const [setCookie] = useCookies(['authToken']);
 
     const login = ( username, password) => {
 

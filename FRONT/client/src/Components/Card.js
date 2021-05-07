@@ -1,5 +1,5 @@
 import React,{useRef, useState} from 'react'
-import { Button, Card, FormControl } from 'react-bootstrap';
+import { Card, FormControl } from 'react-bootstrap';
 
 import {
     NextButton, 
@@ -13,7 +13,6 @@ import {
 export default function CardModel({card}) {
 
     const DISPLAY_MODE = 'display';
-    const EDIT_MODE = 'edit';
     const refTitulo = useRef()
     const refConteudo = useRef()
     const [mode, setMode] = useState(DISPLAY_MODE);

@@ -9,7 +9,7 @@ import {
 
 import { nextStage, backStage } from '../Utils/stageCard'
 import { Button } from 'react-bootstrap'
-import { changeStageCard, deleteCard, editCard, getAllCards } from '../Services/cards'
+import { changeStageCard, createCard, deleteCard, editCard, getAllCards } from '../Services/cards'
 import { useCookies } from 'react-cookie'
 import { useLists } from '../Hook/useLists'
 import { useAuth } from '../Hook/useAuth';
@@ -163,6 +163,41 @@ export function SaveButton({card, titulo='', conteudo='', lista='', setMode}){
             size='sm' 
             variant="outline-info" 
             onClick={() => handleSaveButton(setMode)}
+            >
+            <Save />
+        </Button>
+    );
+}
+
+export function CreateCardButton({titulo='', conteudo='', lista='', setCreating}){
+
+    const [cookies, removeCookie] = useCookies(['authToken']);
+    const { setListCards } = useLists()
+    const {setUser} = useAuth()
+    
+    if(!titulo || !conteudo || !lista)
+        return 
+
+    const card = { titulo, conteudo, lista }
+    const handleCreateButton = async (setCreating) => {
+        try {
+            await createCard(card, cookies)
+            const list = await getAllCards(cookies)
+            setListCards(list)
+            setCreating(false)
+            
+        } catch (error) {
+            alert(error.message)
+            setUser(null)
+            removeCookie('authToken')
+        }
+    }
+    
+    return (
+        <Button 
+            size='sm' 
+            variant="outline-info" 
+            onClick={() => handleCreateButton(setCreating)}
             >
             <Save />
         </Button>
