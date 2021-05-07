@@ -60,9 +60,23 @@ export function CloseButton({card}){
     );
 }
 
-export function EditButton({lista}){
+export function EditButton({mode, setMode, lista}){
+
+    const handleEditButton = async () => {
+
+        const DISPLAY_MODE = 'display';
+        const EDIT_MODE = 'edit';
+
+        if(mode === DISPLAY_MODE) setMode(EDIT_MODE)
+        else setMode(DISPLAY_MODE)
+    }
     return (
-        <Button size='sm' variant="outline-info" disabled={nextStage(lista)==null}>
+        <Button 
+            size='sm' 
+            variant="outline-info" 
+            disabled={nextStage(lista)==null}
+            onClick={handleEditButton}
+            >
             <PencilSquare />
         </Button>
     );
