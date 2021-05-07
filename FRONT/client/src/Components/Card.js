@@ -7,6 +7,12 @@ import {
         PencilSquare
         
 } from 'react-bootstrap-icons';
+import {
+    NextButton, 
+    BackButton,
+    CloseButton,
+    EditButton
+} from './ChangeStageButton'
 
 
 export default function ({titulo, conteudo, lista}) {
@@ -17,12 +23,8 @@ export default function ({titulo, conteudo, lista}) {
                 className='mb-3 shadow p-3 bg-body rounded'>
         <Card.Body>
             <div className='d-flex justify-content-between mb-3'>
-                <Button size='sm' variant="outline-info" disabled={lista=='Done'}>
-                    <PencilSquare />
-                </Button>
-                <Button size="sm" variant="outline-danger">
-                    <X />
-                </Button>
+                <EditButton />
+                <CloseButton />
             </div>
             <Card.Title>{titulo}</Card.Title>
             <Card.Text style={{ minHeight: '4rem' }}>
@@ -31,13 +33,8 @@ export default function ({titulo, conteudo, lista}) {
             }            
             </Card.Text>
             <div className='d-flex justify-content-between'>
-
-                <Button size="sm" variant="outline-info" disabled={lista=='ToDo'}>
-                    <ArrowLeftCircle />
-                </Button>
-                <Button size="sm" variant="outline-info" disabled={lista=='Done'}>
-                    <ArrowRightCircle />
-                </Button>
+                <BackButton lista={lista}/>
+                <NextButton lista={lista}/>
             </div>
         </Card.Body>
         </Card>
