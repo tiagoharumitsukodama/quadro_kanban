@@ -5,7 +5,8 @@ import {
     NextButton, 
     BackButton,
     CloseButton,
-    EditButton
+    EditButton,
+    SaveButton
 } from './ChangeStageButton'
 
 
@@ -13,6 +14,8 @@ export default function CardModel({card}) {
 
     const DISPLAY_MODE = 'display';
     const EDIT_MODE = 'edit';
+    const refTitulo = useRef()
+    const refConteudo = useRef()
     const [mode, setMode] = useState(DISPLAY_MODE);
     const [content, setContent] = useState(card.conteudo);
     const [title, setTitle] = useState(card.titulo);
@@ -46,18 +49,15 @@ export default function CardModel({card}) {
         );
     }
     
-    const refTitulo = useRef()
-    const refConteudo = useRef()
+
     const EditMode = (titulo, conteudo) => {
-
-
         return (
             <Card style={{ width: '16rem', backgroundColor: 'rgb(247, 247, 255)' }} 
                     className='mb-3 shadow p-3 bg-body rounded'>
             <Card.Body>
                 <div className='d-flex justify-content-between mb-3'>
                     <EditButton mode={mode} setMode={setMode} lista={card.lista}/>
-                    <CloseButton card={card}/>
+                    <SaveButton card={card} titulo={title} conteudo={content} mode={mode} setMode={setMode}/>
                 </div>
                 <Card.Title>
                     <FormControl as="textarea" aria-label="With textarea" 
@@ -74,10 +74,6 @@ export default function CardModel({card}) {
                         value={conteudo}
                     />               
                 </Card.Text>
-                <div className='d-flex justify-content-between'>
-                    <BackButton lista={card.lista}/>
-                    <NextButton lista={card.lista}/>
-                </div>
             </Card.Body>
             </Card>
         );
