@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Board from './components/Board';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Board />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+reportWebVitals();
