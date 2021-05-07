@@ -4,19 +4,26 @@ import { useCookies } from 'react-cookie'
 import { getAllCards } from '../Services/cards'
 import { useEffect, useState } from 'react';
 import { useLists } from '../Hook/useLists'
-
+import { useHistory } from 'react-router';
+import { useAuth } from '../Hook/useAuth';
 
 
 export default function Board(){
 
     const [cookies, setCookie, removeCookie] = useCookies(['authToken']);
     const { listCards, setListCards } = useLists()
+    const {setUser} = useAuth()
+    const history = useHistory()
     
     useEffect(() => {
         
         getAllCards(cookies)
             .then( list => setListCards(list) )
-            .catch(console.error)
+            .catch( error => {
+                alert(error.message)
+                setUser(null)
+                history.push('/')
+            })
     },[])
 	
     return (

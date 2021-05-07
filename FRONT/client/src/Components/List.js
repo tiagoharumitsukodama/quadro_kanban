@@ -28,9 +28,7 @@ export default function List({lista}){
                         return (
                             <div key={card.id}>
                                 <Card 
-                                    titulo={card.titulo}
-                                    conteudo={card.conteudo}
-                                    lista={card.lista}
+                                    card={card}
                                 />
                             </div>
                         )

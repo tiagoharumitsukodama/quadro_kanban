@@ -8,6 +8,11 @@ import {
 
 import { nextStage, backStage } from '../Utils/stageCard'
 import { Button } from 'react-bootstrap'
+import { deleteCard, getAllCards } from '../Services/cards'
+import { useCookies } from 'react-cookie'
+import { useLists } from '../Hook/useLists'
+import { useAuth } from '../Hook/useAuth';
+
 
 export function NextButton({lista}){
     return (
@@ -25,9 +30,30 @@ export function BackButton({lista}){
     );
 }
 
-export function CloseButton({lista}){
+export function CloseButton({card}){
+
+    const [cookies] = useCookies(['authToken']);
+    const { setListCards } = useLists()
+    const {setUser} = useAuth()
+
+    const handleCloseButton = async () => {
+        try {
+            await deleteCard(card, cookies)
+            const list = await getAllCards(cookies)
+            setListCards(list)
+            
+        } catch (error) {
+            alert(error.message)
+            setUser(null)
+        }
+    }
+
     return (
-        <Button size="sm" variant="outline-danger">
+        <Button 
+            size="sm" 
+            variant="outline-danger"
+            onClick={handleCloseButton}
+        >
             <X />
         </Button>
     );

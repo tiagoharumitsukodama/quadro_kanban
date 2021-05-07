@@ -15,8 +15,11 @@ import {
 } from './ChangeStageButton'
 
 
-export default function ({titulo, conteudo, lista}) {
+export default function ({card}) {
 
+    const titulo=card.titulo
+    const conteudo=card.conteudo
+    const lista=card.lista
 
     return(
         <Card style={{ width: '16rem', backgroundColor: 'rgb(247, 247, 255)' }} 
@@ -24,7 +27,7 @@ export default function ({titulo, conteudo, lista}) {
         <Card.Body>
             <div className='d-flex justify-content-between mb-3'>
                 <EditButton />
-                <CloseButton />
+                <CloseButton card={card}/>
             </div>
             <Card.Title>{titulo}</Card.Title>
             <Card.Text style={{ minHeight: '4rem' }}>
