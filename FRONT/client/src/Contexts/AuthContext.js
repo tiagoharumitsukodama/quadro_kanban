@@ -21,7 +21,7 @@ export default function AuthProvider({children}){
             .catch(console.error)
     }
 
-    const value = {user, setUser, login, setCookie}
+    const value = {user, setUser, login}
 
     return (
         <AuthContext.Provider value={value}>

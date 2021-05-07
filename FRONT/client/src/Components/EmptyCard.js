@@ -14,7 +14,11 @@ export default function EmptyCard (lista) {
                 className='mb-3 shadow p-3 bg-body rounded'>
             <Card.Body>
                 <div className='d-flex justify-content-between mb-3'>
-                    <CreateCardButton lista={lista} />
+                    <CreateCardButton 
+                        lista={lista} 
+                        conteudo={content}
+                        titulo={title}
+                        />
                 </div>
                 <Card.Title>
                     <FormControl as="textarea" aria-label="With textarea" 
