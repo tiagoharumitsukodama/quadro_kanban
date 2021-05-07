@@ -1,14 +1,13 @@
 # Quadro Kanban
-Desenvolvimento de um Quadro de Kanban
+Quadro Kanban - Desafio técinico - Fullstack
 
 ## Descrição do Projeto
-Quadro Kanban - Desafio técinico - Fullstack
 Desenvolver um projeto em uma semana.
 
 <h1 align="center">
-    <a href="https://pt-br.reactjs.org/">🔗 React</a>
+    Node, Express e React
 </h1>
-<p align="center">🚀 lib para construir interfaces do usuário com componentes reutilizáveis</p>
+<p align="center">Aplicação em React com suas respectivas APIs em Express</p>
 
 <p align="center">
  <a href="#objetivo">Objetivo</a> •
@@ -21,15 +20,13 @@ Desenvolver um projeto em uma semana.
 
 ### Pré-requisitos
 
-Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/). 
-Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+Antes de começar, você vai precisar ter instalado em sua máquina [Node.js](https://nodejs.org/en/)
 
-### 🎲 Rodando o Back End (servidor)
+### Rodando o Back End (servidor)
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/tgmarinho/nlw1>
+$ git clone <https://github.com/tiagoharumitsukodama/quadro_kanban.git>
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd nlw1
@@ -46,9 +43,9 @@ $ npm run dev:server
 # O servidor inciará na porta:3333 - acesse <http://localhost:3333>
 ```
 
-# Clone este repositório
-$ git clone <https://github.com/tgmarinho/nlw1>
+### Rodando o Front End (client)
 
+```bash
 # Acesse a pasta do projeto no terminal/cmd
 $ cd nlw1
 
@@ -62,6 +59,8 @@ $ npm install
 $ npm run dev:server
 
 # O servidor inciará na porta:3333 - acesse <http://localhost:3333> 
+```
+
 
 ### 🛠 Tecnologias
 
