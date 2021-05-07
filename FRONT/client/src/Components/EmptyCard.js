@@ -2,7 +2,7 @@ import React,{useRef, useState} from 'react'
 import { Card, FormControl } from 'react-bootstrap'
 import { CreateCardButton } from './ChangeStageButton'
 
-export default function EmptyCard (lista) {
+export default function EmptyCard ({lista,setCreating}) {
     
     const [content, setContent] = useState();
     const [title, setTitle] = useState();
@@ -18,6 +18,7 @@ export default function EmptyCard (lista) {
                         lista={lista} 
                         conteudo={content}
                         titulo={title}
+                        setCreating={setCreating}
                         />
                 </div>
                 <Card.Title>

@@ -17,6 +17,8 @@ export default function List({lista}){
             <div className='d-flex justify-content-center mb-4 mt-4'>
             {    
                 creating ?
+                <EmptyCard lista={lista} setCreating={setCreating}/>
+                :
                 <Button 
                     variant='outline-success'
                     size='sm'
@@ -24,8 +26,6 @@ export default function List({lista}){
                 >
                     <PlusCircle />
                 </Button>
-                :
-                <EmptyCard lista={lista} />
             } 
             </div>
             <div>

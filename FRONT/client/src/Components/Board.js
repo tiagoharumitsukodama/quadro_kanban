@@ -15,13 +15,22 @@ export default function Board(){
     
     useEffect(() => {
         
+        let gotCards = false
+
         getAllCards(cookies)
-            .then( list => setListCards(list) )
+            .then( list => {
+
+                if(!gotCards)
+                    setListCards(list) 
+            })
             .catch( error => {
                 alert(error.message)
                 setUser(null)
             })
-    })
+
+        return () => gotCards=true
+        
+    },[])
 	
     return (
         <Container className='flex-nowrap
