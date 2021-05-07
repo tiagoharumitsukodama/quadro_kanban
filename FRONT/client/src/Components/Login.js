@@ -32,7 +32,7 @@ export default function Login(){
                     <Form.Label>Usuário</Form.Label>
                     <Form.Control 
                         type="text" 
-                        placeholder="Dogite seu nome" 
+                        placeholder="Digite seu nome" 
                         ref={refUsername}
                     />
                     </Form.Group>

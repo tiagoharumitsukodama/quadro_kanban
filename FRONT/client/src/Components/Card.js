@@ -1,45 +1,97 @@
-import React from 'react'
-import { Button, Card } from 'react-bootstrap';
-import { 
-        ArrowRightCircle,
-        ArrowLeftCircle,
-        X,
-        PencilSquare
-        
-} from 'react-bootstrap-icons';
+import React,{useRef, useState} from 'react'
+import { Card, FormControl } from 'react-bootstrap';
+
+import {
+    NextButton, 
+    BackButton,
+    CloseButton,
+    EditButton,
+    SaveButton
+} from './ChangeStageButton'
 
 
-export default function ({titulo, conteudo, lista}) {
+export default function CardModel({card}) {
+
+    const DISPLAY_MODE = 'display';
+    const refTitulo = useRef()
+    const refConteudo = useRef()
+    const [mode, setMode] = useState(DISPLAY_MODE);
+    const [content, setContent] = useState(card.conteudo);
+    const [title, setTitle] = useState(card.titulo);
 
 
-    return(
-        <Card style={{ width: '16rem', backgroundColor: 'rgb(247, 247, 255)' }} 
-                className='mb-3 shadow p-3 bg-body rounded'>
-        <Card.Body>
-            <div className='d-flex justify-content-between mb-3'>
-                <Button size='sm' variant="outline-info" disabled={lista=='Done'}>
-                    <PencilSquare />
-                </Button>
-                <Button size="sm" variant="outline-danger">
-                    <X />
-                </Button>
-            </div>
-            <Card.Title>{titulo}</Card.Title>
-            <Card.Text style={{ minHeight: '4rem' }}>
-            {
-                conteudo
-            }            
-            </Card.Text>
-            <div className='d-flex justify-content-between'>
+    const DisplayMode = (titulo, conteudo) => {
+        return(
+            <Card style={{ width: '16rem', backgroundColor: 'rgb(247, 247, 255)' }} 
+                    className='mb-3 shadow p-3 bg-body rounded'>
+            <Card.Body>
+                <div className='d-flex justify-content-between mb-3'>
+                    <EditButton mode={mode} setMode={setMode} lista={card.lista}/>
+                    <CloseButton card={card}/>
+                </div>
+                <Card.Title>
+                {
+                    titulo
+                }
+                </Card.Title>
+                <Card.Text style={{ minHeight: '4rem' }}>
+                {
+                    conteudo
+                }          
+                </Card.Text>
+                <div className='d-flex justify-content-between'>
+                    <BackButton card={card}/>
+                    <NextButton card={card}/>
+                </div>
+            </Card.Body>
+            </Card>
+        );
+    }
+    
 
-                <Button size="sm" variant="outline-info" disabled={lista=='ToDo'}>
-                    <ArrowLeftCircle />
-                </Button>
-                <Button size="sm" variant="outline-info" disabled={lista=='Done'}>
-                    <ArrowRightCircle />
-                </Button>
-            </div>
-        </Card.Body>
-        </Card>
+    const EditMode = (titulo, conteudo) => {
+        return (
+            <Card style={{ width: '16rem', backgroundColor: 'rgb(247, 247, 255)' }} 
+                    className='mb-3 shadow p-3 bg-body rounded'>
+            <Card.Body>
+                <div className='d-flex justify-content-between mb-3'>
+                    <EditButton mode={mode} setMode={setMode} lista={card.lista}/>
+                    <SaveButton card={card} titulo={title} conteudo={content} mode={mode} setMode={setMode}/>
+                </div>
+                <Card.Title>
+                    <FormControl as="textarea" aria-label="With textarea" 
+                        size='sm'
+                        ref={refTitulo}
+                        onChange={e => setTitle(e.target.value)}
+                        value={titulo}
+                        />  
+                </Card.Title>
+                <Card.Text style={{ minHeight: '4rem' }}>
+                    <FormControl as="textarea" aria-label="With textarea" 
+                        ref={refConteudo}
+                        onChange={e => setContent(e.target.value)}
+                        value={conteudo}
+                    />               
+                </Card.Text>
+            </Card.Body>
+            </Card>
+        );
+    }
+
+
+    return (
+        <>
+            {mode === DISPLAY_MODE ? DisplayMode(title, content) : EditMode(title, content)}
+        </>
     );
+
 }
+
+
+
+
+
+
+
+
+     
