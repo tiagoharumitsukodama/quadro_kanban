@@ -4,6 +4,7 @@ import Card from './Card'
 import {  PlusCircle } from 'react-bootstrap-icons';
 
 import { useLists } from '../Hook/useLists'
+import NewCard from './NewCard';
 
 export default function List({lista}){
 
@@ -34,6 +35,7 @@ export default function List({lista}){
                         )
                 })
             }
+            <NewCard />
         </Container>
     );
 }

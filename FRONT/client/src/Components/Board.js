@@ -12,7 +12,6 @@ export default function Board(){
     const [cookies, setCookie, removeCookie] = useCookies(['authToken']);
     const { listCards, setListCards } = useLists()
     const {setUser} = useAuth()
-    const history = useHistory()
     
     useEffect(() => {
         
