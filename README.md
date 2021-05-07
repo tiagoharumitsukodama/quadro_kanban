@@ -1,13 +1,13 @@
 # Quadro Kanban
-Quadro Kanban - Desafio técinico - Fullstack
-
-## Descrição do Projeto
+Quadro Kanban - Desafio técinico Fullstack
 Desenvolver um projeto em uma semana.
 
-<h1 align="center">
-    Node, Express e React
-</h1>
-<p align="center">Aplicação em React com suas respectivas APIs em Express</p>
+## Descrição do Projeto
+A aplicação auxilia na organização de pequenas tarefas 
+criando, atualizando e fechando cards. O desafio técnico
+exige que o servidor seja feito em Node e Express e o cliente
+em React.
+
 
 <p align="center">
  <a href="#objetivo">Objetivo</a> •
