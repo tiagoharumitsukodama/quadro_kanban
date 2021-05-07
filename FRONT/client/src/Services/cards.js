@@ -1,4 +1,5 @@
 import Constants from '../Constatns/toFetch'
+import { nextStage } from '../Utils/stageCard'
 
 
 export async function getAllCards(cookies) {
@@ -43,6 +44,27 @@ export async function editCard(card,cookies){
     try {
         const authHeader = cookies.authToken    
     
+        const res = await fetch(`${Constants.CARD_URL}/${card.id}`, {
+            headers: { ...authHeader, ...Constants.DEFAULT_HEADERS },
+            method: 'PUT',
+            body: JSON.stringify(card)
+        })
+
+        if( res.status === 200 ){
+            return await res.json()
+        }
+        else 
+            throw new Error('Não autorizado')
+	
+    } catch (error) {
+        throw new Error('Erro no pedido de alteração')
+    }
+}
+
+export async function changeStageCard(card,cookies){
+    try {
+        const authHeader = cookies.authToken  
+        
         const res = await fetch(`${Constants.CARD_URL}/${card.id}`, {
             headers: { ...authHeader, ...Constants.DEFAULT_HEADERS },
             method: 'PUT',

@@ -9,23 +9,75 @@ import {
 
 import { nextStage, backStage } from '../Utils/stageCard'
 import { Button } from 'react-bootstrap'
-import { deleteCard, editCard, getAllCards } from '../Services/cards'
+import { changeStageCard, deleteCard, editCard, getAllCards } from '../Services/cards'
 import { useCookies } from 'react-cookie'
 import { useLists } from '../Hook/useLists'
 import { useAuth } from '../Hook/useAuth';
+import { useState } from 'react';
 
 
-export function NextButton({lista}){
+export function NextButton({card}){
+
+    const [cookies, removeCookie] = useCookies(['authToken']);
+    const { setListCards } = useLists()
+    const {setUser} = useAuth()
+    const [stage, setStage] = useState(card.lista)
+
+    const handleNextButton = async () => {
+        try {
+            card.lista = nextStage(stage)
+            await changeStageCard(card, cookies)
+            const list = await getAllCards(cookies)
+            setListCards(list)
+            setStage( card.lista  )
+            
+        } catch (error) {
+            alert(error.message)
+            setUser(null)
+            removeCookie('authToken')
+        }
+    }
+
     return (
-        <Button size="sm" variant="outline-info" disabled={nextStage(lista)== null}>
+        <Button 
+            size="sm" 
+            variant="outline-info" 
+            disabled={nextStage(stage) == null}
+            onClick={handleNextButton}
+            >
             <ArrowRightCircle />
         </Button>
     );
 }
 
-export function BackButton({lista}){
+export function BackButton({card}){
+
+    const [cookies, removeCookie] = useCookies(['authToken']);
+    const { setListCards } = useLists()
+    const {setUser} = useAuth()
+    const [stage, setStage] = useState(card.lista)
+
+    const handleBackButton = async () => {
+        try {
+            card.lista = backStage(stage)
+            await changeStageCard(card, cookies)
+            const list = await getAllCards(cookies)
+            setListCards(list)
+            setStage( card.lista  )
+            
+        } catch (error) {
+            alert(error.message)
+            setUser(null)
+            removeCookie('authToken')
+        }
+    }
     return (
-        <Button size="sm" variant="outline-info" disabled={backStage(lista)== null}>
+        <Button 
+            size="sm" 
+            variant="outline-info" 
+            disabled={backStage(stage)== null}
+            onClick={handleBackButton}
+            >
             <ArrowLeftCircle />
         </Button>
     );

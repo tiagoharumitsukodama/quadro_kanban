@@ -41,8 +41,8 @@ export default function CardModel({card}) {
                 }          
                 </Card.Text>
                 <div className='d-flex justify-content-between'>
-                    <BackButton lista={card.lista}/>
-                    <NextButton lista={card.lista}/>
+                    <BackButton card={card}/>
+                    <NextButton card={card}/>
                 </div>
             </Card.Body>
             </Card>
