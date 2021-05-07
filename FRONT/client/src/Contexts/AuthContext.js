@@ -8,7 +8,7 @@ export const AuthContext = React.createContext()
 export default function AuthProvider({children}){
 
     const [user, setUser] = useState()
-    const [setCookie] = useCookies(['authToken']);
+    const [cookies, setCookie] = useCookies(['authToken']);
 
     const login = ( username, password) => {
 
@@ -21,7 +21,7 @@ export default function AuthProvider({children}){
             .catch(console.error)
     }
 
-    const value = {user, setUser, login}
+    const value = {user, setUser, login, setCookie}
 
     return (
         <AuthContext.Provider value={value}>

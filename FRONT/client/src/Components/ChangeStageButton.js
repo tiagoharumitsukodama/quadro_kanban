@@ -174,13 +174,15 @@ export function CreateCardButton({titulo='', conteudo='', lista='', setCreating}
     const [cookies, removeCookie] = useCookies(['authToken']);
     const { setListCards } = useLists()
     const {setUser} = useAuth()
-    
-    if(!titulo || !conteudo || !lista)
-        return 
 
     const card = { titulo, conteudo, lista }
     const handleCreateButton = async (setCreating) => {
+
         try {
+
+            if(!titulo || !conteudo || !lista)
+                throw new Error('Campo vazio')
+
             await createCard(card, cookies)
             const list = await getAllCards(cookies)
             setListCards(list)
@@ -192,7 +194,7 @@ export function CreateCardButton({titulo='', conteudo='', lista='', setCreating}
             removeCookie('authToken')
         }
     }
-    
+
     return (
         <Button 
             size='sm' 
