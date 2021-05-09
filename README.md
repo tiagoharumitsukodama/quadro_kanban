@@ -21,7 +21,7 @@ $ git clone <https://github.com/tiagoharumitsukodama/quadro_kanban.git>
 # Acesse a pasta do projeto no terminal/cmd
 $ cd quadro_kanban
 
-# Vá para a pasta server
+# Vá para a pasta BACK
 $ cd BACK
 
 # Instale as dependências
@@ -31,27 +31,27 @@ $ npm install
 $ cd src
 
 # Execute a aplicação
-$ npm run dev:server
+$ node app.js
 
-# O servidor inciará na porta:3333 - acesse <http://localhost:3333>
+# O servidor inciará na porta:5000
 ```
 
 ### Rodando o Front End (client)
 
 ```bash
-# Acesse a pasta do projeto no terminal/cmd
-$ cd nlw1
+# Acesse a pasta quadro_kanban
+$ cd quadro_kanban
 
-# Vá para a pasta server
-$ cd server
+# Vá para a pasta client
+$ cd FRONT/client
 
 # Instale as dependências
 $ npm install
 
 # Execute a aplicação em modo de desenvolvimento
-$ npm run dev:server
+$ npm run start
 
-# O servidor inciará na porta:3333 - acesse <http://localhost:3333> 
+# O servidor inciará na porta:3000 - acesse <http://localhost:3000> 
 ```
 
 
