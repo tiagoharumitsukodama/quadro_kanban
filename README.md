@@ -8,6 +8,9 @@ criando, atualizando e fechando cards. O desafio técnico
 exige que o servidor seja feito em Node e Express e o cliente
 em React.
 
+<img src="kanban.gif"/>
+
+
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina [Node.js](https://nodejs.org/en/)
@@ -26,6 +29,16 @@ $ cd BACK
 
 # Instale as dependências
 $ npm install
+
+# Crie um arquivo .env na pasta BACK com as seguintes variáveis ambientes: 
+#
+# PORT=5000
+# ACCESS_TOKEN_SECRET=segredo
+# USER_NAME=letscode
+# USER_PASSWORD=lets@123
+#
+# O único usuário cadastrado é "letscode" com a senha "lets@123"
+# O arquivo .env.example dá uma sugestão de como deve ser.
 
 # Vá para a pasta server
 $ cd src
@@ -52,6 +65,9 @@ $ npm install
 $ npm run start
 
 # O servidor inciará na porta:3000 - acesse <http://localhost:3000> 
+
+# Por se tratar de uma demontração, página de acesso aceita qualquer valor
+# e dá o token de acesso como se fosse o usuário "letscode".
 ```
 
 
@@ -59,11 +75,11 @@ $ npm run start
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
+- [Bootstrap](https://getbootstrap.com/)
 - [Express](https://expressjs.com/)
+- [Jwt](https://jwt.io/)
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
-- [Jwt](https://jwt.io/)
-- [Bootstrap](https://getbootstrap.com/)
 - [Sequelize](https://sequelize.org/)
 - [Sqlite](https://www.sqlite.org/index.html)
 
