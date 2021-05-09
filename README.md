@@ -59,9 +59,12 @@ $ npm run start
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-- [Expo](https://expo.io/)
+- [Express](https://expressjs.com/)
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [Jwt](https://jwt.io/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Sequelize](https://sequelize.org/)
+- [Sqlite](https://www.sqlite.org/index.html)
+
 
