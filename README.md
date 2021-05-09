@@ -1,5 +1,5 @@
 # Quadro Kanban
-Desafio técinico Fullstack
+Desafio técinico - Fullstack -
 Desenvolver um projeto em uma semana.
 
 ## Descrição do Projeto
@@ -40,7 +40,7 @@ $ npm install
 # O único usuário cadastrado é "letscode" com a senha "lets@123"
 # O arquivo .env.example dá uma sugestão de como deve ser.
 
-# Vá para a pasta server
+# Vá para a pasta src
 $ cd src
 
 # Execute a aplicação
@@ -52,7 +52,7 @@ $ node app.js
 ### Rodando o Front End (client)
 
 ```bash
-# Acesse a pasta quadro_kanban
+# Em um outro terminal, acesse a pasta quadro_kanban
 $ cd quadro_kanban
 
 # Vá para a pasta client
