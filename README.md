@@ -19,7 +19,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina [Node.js](ht
 
 ```bash
 # Clone este repositório
-$ git clone <https://github.com/tiagoharumitsukodama/quadro_kanban.git>
+$ git clone https://github.com/tiagoharumitsukodama/quadro_kanban.git
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd quadro_kanban
